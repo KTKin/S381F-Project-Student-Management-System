@@ -40,7 +40,6 @@ app.get('/login', (req, res) => {
 app.post('/login', async(req, res) => {
 	try{
 		await client.connect();
-		console.log('Connected to database...');
 		
 		var query = { userID : req.body.username };
 		
@@ -53,7 +52,7 @@ app.post('/login', async(req, res) => {
 			if (result.userPW == req.body.password) {
 				console.log('Login successful...');
 				req.session.authenticated = true;
-				req.session.username = result.fName + ' ' + result.lName;
+				req.session.username = req.body.username;
 			} else {
 				console.log('Wrong password...');
 			}
@@ -62,7 +61,6 @@ app.post('/login', async(req, res) => {
 		}
 	} finally {
 		await client.close();
-		console.log('Disconnect from database...')
 		res.redirect('/');
 	}
 });
@@ -75,10 +73,42 @@ app.get('/logout', (req, res) => {
 });
 
 //---main
-app.get('/main', (req, res) => {
-	res.status(200).render('main',{});
+app.get('/main', async (req, res) => {
+	try {
+		//seach for data
+		await client.connect();
+		var query = { userID : req.session.username };
+		var result = await client.db('project').collection('students').findOne(query);
+		
+		//data for displaying profile
+		var profile = {
+			fName : result.fName,
+			lName : result.lName,
+			birthDay : result.birthDay,
+			phone : result.phone,
+			email : result.email
+		};
+		
+		//data for displaying emergency contact
+		var emergContact = result.emergContact;
+
+	} finally {
+		await client.close();
+	}
+	res.status(200).render('main',{
+		profile : profile,
+		contact : emergContact
+	});
 });
 
+//---student profile
+app.get('/main/profile', (req, res) => {
+	res.status(200).render('profile');
+});
+
+app.post('/main/profile',(req, res) => {
+
+});
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
