@@ -1,0 +1,17 @@
+{
+    "name": "server",
+    "description": "Student Record System",
+    "author": "Group 26",
+    "version": "1.0",
+    "dependencies": {
+        "express": "*",
+        "ejs": "*",
+        "mongodb": "*",
+        "cookie-session": "*",
+        "nodemon": "*"
+    },
+    "engine": "node >= 0.10.0",
+    "scripts": {
+        "start": "nodemon server"
+    }
+}
