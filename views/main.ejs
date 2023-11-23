@@ -16,11 +16,6 @@
         border-radius: 8px;
         box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
-    label {
-        display: block;
-        margin-top: 10px;
-        color: #666;
-    }
     input[type="text"], select {
         width: 100%;
         padding: 6px; /* Reduced padding */
@@ -46,61 +41,109 @@
     input[type="submit"]:hover {
         background-color: #0056b3; /* Darker shade of blue for hover effect */
     }
+    input[name="logout"]{
+    	background-color: red;
+    }
+    table, th, td{
+    	border: 2px solid;
+    	border-collapse: collapse;
+    	width: 45%;
+    	text-align: left;
+    }
 </style>
-
-
 </head>
+
 <body>
     <h1>Student Management System</h1>
-
+    <!------------------------------------------------------------------>
     <h2>Student Profiles</h2>
-    <!--
-    <form action="/viewStudent" method="post">
-    <label for="studentId">Student ID:</label>
-    <input type="text" id="studentId" name="studentId">
-    <input type="submit" value="View Profile">
+    <dir>
+        <table>
+            <tr><th>First Name: </th><td><%=profile.fName%></td></tr>
+            <tr><th>Last Name: </th><td><%=profile.lName%></td></tr>
+            <tr><th>Day of Birth: </th><td><%=profile.birthDay%></td></tr>
+            <tr><th>Phone: </th><td><%=profile.phone%></td></tr>
+            <tr><th>Email: </th><td><%=profile.email%></td></tr>
+        </table>
+    </dir>
+    <form action="/newphone" method="post">
+    	Update Phone Number: 
+    	<input type='text' name='phone' pattern='[0-9]{8}' placeholder='New Phone' required>
+    	<input type='submit' value='Update' class='btn'>
     </form>
-    -->
-    <table>
-        <tr><th>First Name</th><td><%=profile.fName%></td></tr>
-        <tr><th>Last Name</th><td><%=profile.lName%></td></tr>
-        <tr><th>Day of Birth</th><td><%=profile.birthDay%></td></tr>
-        <tr><th>Phone</th><td><%=profile.phone%></td></tr>
-        <tr><th>Email</th><td><%=profile.email%></td></tr>
-    </table>
-    <a href='main/profile'>Update Profile</a>
-    
-    
-    
-    <h2>Emergency Contact</h2>	
-	<table>
-	    <tr><th>Realtionship</th><th>Phone No.</th></tr>
-	    <% for(var i = 0; i < contact.length; i++) {%>
-	    	<tr>
-	    		<td><%=contact[i].relationship%></td>
-	    		<td><%=contact[i].number%></td>
-	    	</tr>
-	    <% } %>
-	</table>
-	<a href='main/contact'>Edit Contact</a>
-	
-	
+    <form action="/newemail" method="post">
+    	Update Email: 
+    	<input type='text' name='email' placeholder='New Email' required>
+    	<input type='submit' value='Update' class='btn'>
+    </form>
+    <!------------------------------------------------------------------>
+    <h2>Emergency Contact</h2>
+    <dir>
+		<table>
+			<tr><th>Realtionship</th><th>Phone No.</th></tr>
+			<% for(var i = 0; i < contact.length; i++) {%>
+				<tr>
+					<td><%=contact[i].relation%></td>
+					<td><%=contact[i].phone%></td>
+				</tr>
+			<% } %>
+		</table>
+	</dir>
+	<form action='/addcontact' method='post'>
+		Add New Contact:
+		<input type='text' name='relation' placeholder='Relationship' required>
+		<input type='text' name='phone' pattern='[0-9]{8}' placeholder='Phone No.' required>
+		<input type='submit' value='Add' class='btn'>
+	</form>
+	<form action='/delcontact' method='post'>
+		Delete Contact: 
+		<input type='text' name='phone' pattern='[0-9]{8}' placeholder='Phone No.' required>
+		<input type='submit' value='Delete' class='btn'>
+	</form>
+    <!------------------------------------------------------------------>
     <h2>Attendance Tracking</h2>
-    <form action="/recordAttendance" method="post">
-        <label for="classId">Class ID:</label>
-        <input type="text" id="classId" name="classId">
-        <label for="studentId">Student ID:</label>
-        <input type="text" id="studentId" name="studentId">
-        <label for="attendanceStatus">Attendance Status:</label>
-        <select id="attendanceStatus" name="attendanceStatus">
-            <option value="attended">Attended</option>
-            <option value="noShow">No Show</option>
+    <form action="/attendance" method="get">
+    	<%if (attendance == true){
+    		attStatus = 'Taken';
+    	} else {
+			attStatus = 'Not Taken';
+    	}%>
+    	<p>Today's Attendance: <%=attStatus%></p>
+        <input type="submit" value="Take Attendance">
+    </form>
+    <form action="/attendance" method="post">
+        Search By: 
+        <select id="month" name="month">
+        	<option value="">All Month</option>
+            <option value="1">January</option>
+            <option value="2">February</option>
+            <option value="3">March</option>
+            <option value="4">April</option>
+            <option value="5">May</option>
+            <option value="6">June</option>
+            <option value="7">July</option>
+            <option value="8">August</option>
+            <option value="9">September</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
         </select>
-        <input type="submit" value="Record Attendance">
+        <input type='submit' value='Search' class='btn'>
     </form>
-    
-    <a href="/logout">Logout</a>
-    
-    </form>
+    <%if (attShow != null){%>
+		<dir>
+		<h2>Attendance Searched: <%=attShow.length%></h2>
+		<table>
+				<tr><th>Day</th><th>Month</th><th>Year</th></tr>
+				<%for (var i of attShow){%>
+					<tr><td><%=i.day%></td><td><%=i.month%></td><td><%=i.year%></td></tr>
+				<%}%>
+		</table>
+		</dir>
+	<%}%>
+    <!------------------------------------------------------------------>
+    <form action="/logout">
+    <input type="submit" value="Logout" name="logout">
+    </fomr>
 </body>
 </html>
