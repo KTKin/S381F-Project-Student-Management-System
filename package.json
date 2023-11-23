@@ -1,6 +1,6 @@
 {
     "name": "server",
-    "description": "Student Management System",
+    "description": "Student Record System",
     "author": "Group 26",
     "version": "0.0.1",
     "dependencies": {
