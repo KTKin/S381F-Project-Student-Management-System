@@ -17,7 +17,7 @@ app.use(session({
 
 const date = new Date();
 var day = date.getDate();
-var month = date.getMonth();
+var month = date.getMonth()+1;
 var year = date.getFullYear();
 
 
@@ -60,7 +60,6 @@ app.post('/login', async(req, res) => {
 		var result = await student.findOne(query);
 		
 		if (result != null) {
-			console.log('User Found...');
 			//match password
 			if (req.body.password == result.userPW) {
 				//session
@@ -68,15 +67,15 @@ app.post('/login', async(req, res) => {
 				req.session.username = result.userID;
 				console.log(`${req.session.username} Login Successful...`);
 				req.session.attShow = null;
+				res.redirect('/');
 			} else {
-				console.log('Failed : Wrong Password...');
+				res.render('message',{message:'Wrong Password'});
 			}
 		} else {
-			console.log('Failed : User Not Found...');
+			res.render('message',{message:'User Not Found'});
 		}
 	} finally {
 		await client.close();
-		res.redirect('/');
 	}
 });
 
@@ -84,7 +83,7 @@ app.post('/login', async(req, res) => {
 app.get('/logout', async (req, res) => {
 	req.session = null;
 	console.log('Logout...');
-	res.redirect('/');
+	res.render('message',{message:'Logout'});
 });
 
 //---main
@@ -129,17 +128,16 @@ app.post('/newphone', async (req, res) => {
 		//check if phone number is used
 		var check = await student.findOne({ phone : req.body.phone });
 		if (check != null) {
-			console.log('Failed : Number Existed...');
+			res.render('message',{message:'Failed : Number Existed'});
 		} else {
 			var find = { userID : req.session.username };
 			var set = { $set : { phone : req.body.phone } };
 			//update
 			await student.updateOne(find, set);
-			console.log('Phone Updated...');
+			res.render('message',{message:'Phone Updated'});
 		}
 	} finally {
 		await client.close();
-		res.redirect('/main');
 	}
 });
 //------update email
@@ -149,17 +147,16 @@ app.post('/newemail', async (req, res) => {
 		//check if email is used
 		var check = await student.findOne({ email : req.body.email });
 		if (check != null) {
-			console.log('Failed : Email Existed...');
+			res.render('message',{message:'Failed : Email Existed'});
 		} else {
 			var find = { userID : req.session.username };
 			var set = { $set : { email : req.body.email } };
 			//update
 			await student.updateOne(find, set);
-			console.log('Email Updated...');
+			res.render('message',{message:'Email Updated'});
 		}
 	} finally {
 		await client.close();
-		res.redirect('/main');
 	}
 });
 
@@ -174,14 +171,14 @@ app.post('/addcontact', async (req, res) => {
 		
 		//can only create contacts up to 5
 		if (condition.length >= 5) {
-			console.log('Failed : Reach Limit...');
+			res.render('message',{message:'Failed : Reach Limit'});
 		} else {
 			//check if number already exist
 			status = true;
 			for(var object of condition) {
 				if (object.phone == req.body.phone){
 					status = false;
-					console.log('Failed : Number Exist...');
+					res.render('message',{message:'Failed : Number Exist'});
 					break;
 				}
 			}
@@ -193,25 +190,29 @@ app.post('/addcontact', async (req, res) => {
 				};
 				//create
 				await contact.insertOne(doc);
-				console.log('Contact Created...');
+				res.render('message',{message:'Contact Created'});
 			}
 		}
 	} finally {
 		await client.close();
-		res.redirect('/main');
 	}
 });
 //------delete contact
 app.post('/delcontact', async (req, res) => {
 	try{
 		await client.connect();
-		//delete by phone number
-		var query = { userID : req.session.username, phone : req.body.phone };
-		await contact.deleteOne(query);
-		console.log('Contact Deleted...');
+		//check if number exist
+		var result = await contact.findOne({'userID':req.session.username, 'phone':req.body.phone});
+		if (result != null) {
+			//delete by phone number
+			var query = { userID : req.session.username, phone : req.body.phone };
+			await contact.deleteOne(query);
+			res.render('message',{message:'Contact Deleted'});
+		} else {
+			res.render('message',{message:'Contact Not Exist'})
+		}
 	} finally {
 		await client.close();
-		res.redirect('/main');
 	}
 });
 
@@ -228,13 +229,12 @@ app.get('/attendance', async (req, res) => {
 				year : year
 			};
 			await attendance.insertOne(doc);
-			console.log('Attendance Taken...');
+			res.render('message',{message:'Attendance Taken'});
 		} else {
-			console.log('Already Taken...');
+			res.render('message',{message:'Already Taken'});
 		}
 	} finally {
 		await client.close();
-		res.redirect('/main');
 	}
 });
 //------read attendance
@@ -257,9 +257,8 @@ app.post('/attendance', async (req, res) => {
 		}
 	} finally {
 		await client.close();
-		console.log('Serach Done...');
 		req.session.attShow = result;
-		res.redirect('/main');
+		res.redirect('/');
 	}
 });
 
