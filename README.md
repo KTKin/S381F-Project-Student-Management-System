@@ -1,4 +1,7 @@
 # Project - Student Record System
+## Introduction
+Cloud Platform : Render
+Database : Mongodb
 ## Getting Start
 - URL : "https://srs-qiyp.onrender.com"
 - Testing account1 -> Username: `s123456` & Password: `123456`
