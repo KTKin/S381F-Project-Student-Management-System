@@ -1,6 +1,6 @@
 # Project - Student Record System
 ## Getting Start
-- URL : "https://srs-wjsz.onrender.com/"
+- URL : "https://srs-qiyp.onrender.com"
 - Testing account1 -> Username: `s123456` & Password: `123456`
 - Testing account2 -> Username: `s456789` & Password: `456789`
 
