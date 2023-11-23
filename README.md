@@ -1,7 +1,4 @@
 # Project - Student Record System
-## Introduction
-- The system provides http CRUD services and RESTful services.
-- Mongodb is used as database.
 ## Getting Start
 - URL : "https://srs-wjsz.onrender.com/"
 - Testing account1 -> Username: `s123456` & Password: `123456`
@@ -25,9 +22,17 @@ req.session.username : <Username>
 - the session will stay until user logout.
 ## Testing Logout
 ### Normal Flows - Logout
-1. Press the "Logout" button on the bottom of main page
-   OR
-2. Type the URL with route `/logout`
+1. Press the "Logout" button on the bottom of main page.
+<br/>OR
+3. Type the URL with route `/logout`.
 ### Successful Logout
-- Once Logout is successful, session will be set as `null`
-- Login process is required to asscess main page after Logout
+- Once Logout is successful, session will be set as `null`.
+- Login process is required to asscess main page after Logout.
+## CRUD services
+### Update Student Profile (UPDATE)
+- There are two data can be update in this section: `Phone` AND `Email`.
+- `Phone` with constraint of 8 digit number.
+- `Email` just a String.
+
+## RESTful services
+
