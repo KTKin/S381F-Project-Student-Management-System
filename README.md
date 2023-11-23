@@ -91,4 +91,13 @@ req.session.username : <Username>
 - Attendance record will be shown as table in the main page according condition.
 
 ## RESTful services
+### POST
+```
+POST API : https://srs-qiyp.onrender.com/:userid/profile
+```
+### GET
+
+### PUT
+
+### DELETE
 
