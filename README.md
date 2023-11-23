@@ -32,10 +32,10 @@ req.session.username : <Username>
 - Login process is required to asscess main page after Logout.
 
 ## CRUD services
-### Update Student Profile (UPDATE)
+### Student Profile (UPDATE)
 - There are two data can be update in this section: `Phone` AND `Email`.
 - `Phone` with constraint of 8 digit number.
-- `Email` just a String.
+- `Email` is a String.
 #### Normal Flows
 1. Type the data in the input area.
 2. Press `Update` to update the phone number.
@@ -46,5 +46,25 @@ req.session.username : <Username>
 #### Successful Update
 - New data will replace old data and be show in the main page.
 
+### Emergency Contact (CREATE & DELETE)
+- Create emergency contact by entering `Phone` and `Relation`
+- Maximum number of contact is 5
+- `Phone` with constraint of 8 digit number.
+- `Relation` is a String.
+#### Normal Flows (CREATE)
+1. Type the phone and relation inthe input area
+2. Press "Add"
+#### Exceptions
+- Any exception below that causes update failure:
+1. Number of contact reaches 5
+2. Phone number is not 8 digit number.
+3. Phone number already exist in user contact table.
+#### Successful Update
+- New contact append to the contact table and show on main page.
+
+### Attendance (CREATE & READ)
+#### Normal Flows
+#### Exceptions
+#### Successful Update
 ## RESTful services
 
