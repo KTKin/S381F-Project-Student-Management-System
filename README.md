@@ -103,7 +103,7 @@ https://srs-qiyp.onrender.com/:userid/contact
 ```
 - Sample code for cURL:
 ```
-curl -X POST https://srs-qiyp.onrender.com/s123456/contact -H "Content-Type:application/json" -d '{"phone":"14725836", "relation":"parent"}'
+curl -X POST https://srs-qiyp.onrender.com/s123456/contact -H "Content-Type:application/json" -d '{"phone":"12345678", "relation":"parent"}'
 ```
 ### GET
 - API : 
