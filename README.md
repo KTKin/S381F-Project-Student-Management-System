@@ -34,11 +34,14 @@ req.session.username : <Username>
 - There are two data can be update in this section: `Phone` AND `Email`.
 - `Phone` with constraint of 8 digit number.
 - `Email` just a String.
-### Normal Flows - Phone
+#### Normal Flows - Phone
 1. Type the phone number in the input area.
 2. Press `Update` to update the phone number.
-### Successful Update
+#### Exceptions
+- Any exception below that causes update failure:
+1. The input number is not 8 digit number.
+2. The number is used by other user.
+#### Successful Update
 - New phone number will replace old phone number and be show in the main page.
-
 ## RESTful services
 
