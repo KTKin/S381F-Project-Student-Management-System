@@ -8,7 +8,7 @@
         "ejs": "*",
         "mongodb": "*",
         "cookie-session": "*",
-        "body-parser": "*"
+        "body-parser": "*",
         "node": "*"
     },
     "engine": "node >= 0.10.0",
