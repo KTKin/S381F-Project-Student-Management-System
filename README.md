@@ -3,6 +3,7 @@
 - URL : "https://srs-wjsz.onrender.com/"
 - Testing account1 -> Username: `s123456` & Password: `123456`
 - Testing account2 -> Username: `s456789` & Password: `456789`
+
 ## Login/Logout
 ### Testing Login
 #### Normal Flows - Login
@@ -29,6 +30,7 @@ req.session.username : <Username>
 #### Successful Logout
 - Once Logout is successful, session will be set as `null`.
 - Login process is required to asscess main page after Logout.
+
 ## CRUD services
 ### Update Student Profile (UPDATE)
 - There are two data can be update in this section: `Phone` AND `Email`.
@@ -43,5 +45,13 @@ req.session.username : <Username>
 2. The number is used by other user.
 #### Successful Update
 - New phone number will replace old phone number and be show in the main page.
+#### Normal Flows - Email
+1. Type the email in the input area.
+2. Press `Update` to update the emailr.
+#### Exceptions
+1. The email is used by other user.
+#### Successful Update
+- New email will replace old email and be show in the main page.
+
 ## RESTful services
 
