@@ -39,7 +39,7 @@ req.session.username : <Username>
 - `Email` is a String.
 #### Normal Flows
 1. Type the data in the input area.
-2. Press `Update` to update the phone number.
+2. Press "Update" to update the phone number.
 #### Exceptions
 - Any exception below that causes update failure:
 1. `Phone` is not 8 digit number.
@@ -48,13 +48,13 @@ req.session.username : <Username>
 - New data will replace old data and be show in the main page.
 
 ### Emergency Contact (CREATE & DELETE)
-- Create emergency contact by entering `Phone` and `Relation`
-- Maximum number of contact is 5
+- Create emergency contact by entering `Phone` and `Relation`.
+- Maximum number of contact is 5.
 - `Phone` with constraint of 8 digit number.
 - `Relation` is a String.
 #### Normal Flows (CREATE)
-1. Type the phone and relation in the input area
-2. Press "Add"
+1. Type the phone and relation in the input area.
+2. Press "Add" to create new contact.
 #### Exceptions
 - Any exception below that causes update failure:
 1. Number of contact reaches 5
@@ -65,7 +65,7 @@ req.session.username : <Username>
 
 #### Normal Flows (DELETE)
 1. Type the phone in the input area
-2. Press "Delete"
+2. Press "Delete" to delete corresponding number.
 #### Exceptions
 - Any exception below that causes update failure:
 2. `Phone` is not 8 digit number.
@@ -75,7 +75,7 @@ req.session.username : <Username>
 
 ### Attendance (CREATE & READ)
 - Create and read the table of attendance.
-- Attendance will be shown as two status: "Taken" OR "Not Taken"
+- Attendance will be shown as two status: `Taken` OR `Not Taken`
 - Everytime access to `/main`, server will match the `Date` from database and return the attendance status.
 #### Normal Flows (CREATE)
 - Press the "Take Attendance" button.
@@ -83,5 +83,12 @@ req.session.username : <Username>
 1. Attendance alreay taken.
 #### Successful Create
 - `Date` will be record to database.
+  
+#### Normal Flows (READ)
+1. Select a month from the select box.
+2. Press "Search" to view the attendance of that month.
+#### Successful Read
+- Attendance record will be shown as table in the main page according condition.
+
 ## RESTful services
 
