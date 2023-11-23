@@ -92,8 +92,14 @@ req.session.username : <Username>
 
 ## RESTful services
 ### POST
+- API : 
 ```
-POST API : https://srs-qiyp.onrender.com/:userid/profile
+https://srs-qiyp.onrender.com/:userid/profile
+```
+- `:userid` refer to the username.
+- sample code for cURL: 
+```
+curl GET https://srs-qiyp.onrender.com/s123456/profile
 ```
 ### GET
 
