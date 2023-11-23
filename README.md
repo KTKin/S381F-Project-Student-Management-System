@@ -1,1 +1,1 @@
-# ServerSideProject
+# Project - Student Record System
