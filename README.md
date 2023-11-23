@@ -6,7 +6,7 @@
 - URL : "https://srs-wjsz.onrender.com/"
 - Testing account1 -> Username: `s123456` & Password: `123456`
 - Testing account2 -> Username: `s456789` & Password: `456789`
-## Testing Login/Logout
+## Testing Login
 ### Normal Flows - Login
 1. Open the URL above to enter login page.
 2. Select one account above for login.
@@ -23,7 +23,7 @@ req.session.username : <Username>
 ```
 - while the session exist, users can skip the login page to ascess `/main`. 
 - the session will stay until user logout.
-
+## Testing Logout
 ### Normal Flows - Logout
 1. Press the "Logout" button on the bottom of main page
    OR
