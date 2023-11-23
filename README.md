@@ -103,7 +103,7 @@ https://srs-qiyp.onrender.com/:userid/contact
 ```
 - Sample code for cURL:
 ```
-curl -X POST https://srs-qiyp.onrender.com/s123456/contact -H "content-type: application/json" -d '{"phone":"14725836", "relation":"parent"}'
+curl -X POST https://srs-qiyp.onrender.com/s123456/contact -H "Content-Type:application/json" -d '{"phone":"14725836", "relation":"parent"}'
 ```
 ### GET
 - API : 
@@ -116,6 +116,18 @@ https://srs-qiyp.onrender.com/:userid/profile
 curl GET https://srs-qiyp.onrender.com/s123456/profile
 ```
 ### PUT
-
+- API:
+```
+https://srs-qiyp.onrender.com/:userid/phone
+```
+- `:userid` refer to the username.
+- Header and Data are required
+```
+-H "Content-Type:application/json" -d '{"phone":"<input phone>"}'
+```
+- Sample code for cURL:
+```
+curl -X PUT https://srs-qiyp.onrender.com/s123456/phone -H "Content-Type:application/json" -d '{"phone":"12345678"}'
+```
 ### DELETE
 
