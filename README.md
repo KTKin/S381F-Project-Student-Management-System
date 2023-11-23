@@ -22,6 +22,7 @@ req.session.username : <Username>
 ```
 - while the session exist, users can skip the login page to ascess `/main`. 
 - the session will stay until user logout.
+
 ### Testing Logout
 #### Normal Flows - Logout
 1. Press the "Logout" button on the bottom of main page.
@@ -41,8 +42,8 @@ req.session.username : <Username>
 2. Press `Update` to update the phone number.
 #### Exceptions
 - Any exception below that causes update failure:
-1. Phone number is not 8 digit number.
-2. Phone number or email is used by other user.
+1. `Phone` is not 8 digit number.
+2. `Phone` or email is used by other user.
 #### Successful Update
 - New data will replace old data and be show in the main page.
 
@@ -52,19 +53,35 @@ req.session.username : <Username>
 - `Phone` with constraint of 8 digit number.
 - `Relation` is a String.
 #### Normal Flows (CREATE)
-1. Type the phone and relation inthe input area
+1. Type the phone and relation in the input area
 2. Press "Add"
 #### Exceptions
 - Any exception below that causes update failure:
 1. Number of contact reaches 5
-2. Phone number is not 8 digit number.
-3. Phone number already exist in user contact table.
-#### Successful Update
+2. `Phone` is not 8 digit number.
+3. `Phone` already exist in user contact table.
+#### Successful Create
 - New contact append to the contact table and show on main page.
 
-### Attendance (CREATE & READ)
-#### Normal Flows
+#### Normal Flows (DELETE)
+1. Type the phone in the input area
+2. Press "Delete"
 #### Exceptions
-#### Successful Update
+- Any exception below that causes update failure:
+2. `Phone` is not 8 digit number.
+3. `Phone` does not exist in user contact table.
+#### Successful Delete
+- Input number delete from the contact table.
+
+### Attendance (CREATE & READ)
+- Create and read the table of attendance.
+- Attendance will be shown as two status: "Taken" OR "Not Taken"
+- Everytime access to `/main`, server will match the `Date` from database and return the attendance status.
+#### Normal Flows (CREATE)
+- Press the "Take Attendance" button.
+#### Exceptions
+1. Attendance alreay taken.
+#### Successful Create
+- `Date` will be record to database.
 ## RESTful services
 
