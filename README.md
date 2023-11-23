@@ -94,15 +94,27 @@ req.session.username : <Username>
 ### POST
 - API : 
 ```
+https://srs-qiyp.onrender.com/:userid/contact
+```
+- `:userid` refer to the username.
+- Header and Data are required
+```
+-H "Content-Type:application/json" -d '{"phone":"<input phone>", "relation":"<input relation>"}'
+```
+- Sample code for cURL:
+```
+curl -X POST https://srs-qiyp.onrender.com/s123456/contact -H "content-type: application/json" -d '{"phone":"23568955", "relation":"guardian"}'
+```
+### GET
+- API : 
+```
 https://srs-qiyp.onrender.com/:userid/profile
 ```
 - `:userid` refer to the username.
-- sample code for cURL: 
+- Sample code for cURL: 
 ```
 curl GET https://srs-qiyp.onrender.com/s123456/profile
 ```
-### GET
-
 ### PUT
 
 ### DELETE
