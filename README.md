@@ -96,8 +96,8 @@ req.session.username : <Username>
 ```
 https://srs-qiyp.onrender.com/:userid/contact
 ```
-- `:userid` refer to the username.
-- Header and Data are required
+- `:userid` refer to username.
+- Header and Data are required.
 ```
 -H "Content-Type:application/json" -d '{"phone":"<input phone>", "relation":"<input relation>"}'
 ```
@@ -110,7 +110,7 @@ curl -X POST https://srs-qiyp.onrender.com/s123456/contact -H "Content-Type:appl
 ```
 https://srs-qiyp.onrender.com/:userid/profile
 ```
-- `:userid` refer to the username.
+- `:userid` refer to username.
 - Sample code for cURL: 
 ```
 curl GET https://srs-qiyp.onrender.com/s123456/profile
@@ -120,8 +120,8 @@ curl GET https://srs-qiyp.onrender.com/s123456/profile
 ```
 https://srs-qiyp.onrender.com/:userid/phone
 ```
-- `:userid` refer to the username.
-- Header and Data are required
+- `:userid` refer to username.
+- Header and Data are required.
 ```
 -H "Content-Type:application/json" -d '{"phone":"<input phone>"}'
 ```
@@ -130,4 +130,13 @@ https://srs-qiyp.onrender.com/:userid/phone
 curl -X PUT https://srs-qiyp.onrender.com/s123456/phone -H "Content-Type:application/json" -d '{"phone":"12345678"}'
 ```
 ### DELETE
-
+- API:
+```
+https://srs-qiyp.onrender.com/:userid/contact/:phone
+```
+- `:userid` refer to username.
+- `:phone` refer to contact user wants to delete.
+- Sample code for cURL:
+```
+curl -X DELETE https://srs-qiyp.onrender.com/s123456/contact/12345678
+```
